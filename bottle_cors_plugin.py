@@ -22,11 +22,10 @@ class CorsPluginObject():
 
     def apply(self, fn, context):
         def _enable_cors(*args, **kwargs):
-            # set CORS headers
             if request.method != 'OPTIONS':
                 self.cors_headers()
-                # actual request; reply with the actual response
                 return fn(*args, **kwargs)
+
         return _enable_cors
 
     def _options_route(self):
