@@ -10,7 +10,7 @@ if sys.version_info < (3, 0):
 
 setuptools.setup(
     name='bottle-cors-plugin',
-    version='0.1.2',
+    version='0.1.3',
     author="Alfonso Villalobos",
     author_email="alfonso@codepeat.com",
     license='MIT',
