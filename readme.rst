@@ -7,6 +7,7 @@ Installing the plugin
 ---------------------
 
 ::
+
     pip install bottle-cors-plugin
 
 after this on your bottle app you need to import cors_plugin and install
