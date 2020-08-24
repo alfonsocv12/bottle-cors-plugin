@@ -1,7 +1,7 @@
 import setuptools, sys
 
 
-with open("README.md", 'r') as fh:
+with open("readme.md", 'r') as fh:
     long_description = fh.read()
 
 
@@ -10,7 +10,7 @@ if sys.version_info < (3, 0):
 
 setuptools.setup(
     name='bottle-cors-plugin',
-    version='0.1.0',
+    version='0.1.2',
     author="Alfonso Villalobos",
     author_email="alfonso@codepeat.com",
     license='MIT',
