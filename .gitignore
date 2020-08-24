@@ -1,1 +1,11 @@
+__pycache__
+
+#Packages
+dist
+build
+_build
+*.egg-info/
+
+#Local
+.DS_Store
 modules/
