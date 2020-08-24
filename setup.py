@@ -1,7 +1,7 @@
 import setuptools, sys
 
 
-with open("readme.md", 'r') as fh:
+with open("readme.rst", 'r') as fh:
     long_description = fh.read()
 
 
@@ -16,6 +16,7 @@ setuptools.setup(
     license='MIT',
     description="The easiest way to use cors on bottle",
     long_description=long_description,
+    long_description_content_type='text/x-rst',
     packages=setuptools.find_packages(),
     py_modules=['bottle_cors_plugin'],
     scripts=['bottle_cors_plugin.py'],
