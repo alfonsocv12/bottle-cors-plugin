@@ -17,7 +17,7 @@ for example.
 
     # -*- coding: utf-8 -*-
     from bottle import app, response, route, run
-    from cors import cors_plugin
+    from bottle_cors_plugin import cors_plugin
 
     @route('/', method='GET')
     def landing():
