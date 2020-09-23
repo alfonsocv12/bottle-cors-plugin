@@ -22,8 +22,8 @@ class CorsPluginObject():
 
     def apply(self, fn, context):
         def _enable_cors(*args, **kwargs):
+            self.cors_headers()
             if request.method != 'OPTIONS':
-                self.cors_headers()
                 return fn(*args, **kwargs)
 
         return _enable_cors
