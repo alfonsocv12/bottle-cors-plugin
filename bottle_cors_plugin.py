@@ -57,12 +57,13 @@ class CorsPluginObject():
         Function dedicated to return origin if is on list
         '''
         client_origin = request.headers.get('Origin', None)
-        if not client_origin or '*' in self.origins:
-            return self.origins
+        if '*' in self.origins: return '*'
+        if not client_origin:
+            return self.origins[0]
         for origin in self.origins:
             if origin == client_origin:
                 return origin
-        return self.origins
+        return self.origins[0]
 
     def abort(self, code=500, text='Unknown Error.'):
         """ Aborts execution and causes a HTTP error. """
