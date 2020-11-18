@@ -32,17 +32,26 @@ for example.
       run(host='localhost', port=7000)
 
 On the cors_plugin function you can send a simple string or array of origins
-this variable will set globaly on the plugin so you just set-it one time
+this variable will set globaly on the plugin so you just set-it one time to add *
+origins just don't put anything on the function
 
 .. code-block:: python
 
-    cors_plugin('*')
+  cors_plugin()
 
-or
+This will return the * origins
 
 .. code-block:: python
 
-    cors_plugin(['google.com', 'youtube.com'])
+    cors_plugin('https://google.com')
+
+with just google.com as and origin or
+
+.. code-block:: python
+
+    cors_plugin(['https://google.com', 'http://google.com'])
+
+for multiple origins
 
 Aborts
 ------

@@ -46,11 +46,23 @@ class CorsPluginObject():
             params: origins
             ptype: string or array of strings
         """
-        response.headers['Access-Control-Allow-Origin'] = self.origins
+        response.headers['Access-Control-Allow-Origin'] = self._get_origin()
         response.headers['Access-Control-Allow-Methods'] = '\
             GET, POST, PUT, PATCH, OPTIONS, DELETE'
         response.headers['Access-Control-Allow-Headers'] = '\
             Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token, Authorization'
+
+    def _get_origin(self):
+        '''
+        Function dedicated to return origin if is on list
+        '''
+        client_origin = request.headers.get('Origin', None)
+        if not client_origin or '*' in self.origins:
+            return self.origins
+        for origin in self.origins:
+            if origin == client_origin:
+                return origin
+        return self.origins
 
     def abort(self, code=500, text='Unknown Error.'):
         """ Aborts execution and causes a HTTP error. """
@@ -65,6 +77,8 @@ class CorsPluginObject():
 cors_plugin_object = CorsPluginObject()
 
 def cors_plugin(origins="*"):
+    if not isinstance(origins, list):
+        origins = [origins]
     cors_plugin_object.origins = origins
     return cors_plugin_object
 
