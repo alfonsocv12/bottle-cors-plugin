@@ -11,7 +11,7 @@ class CorsPluginObject():
 
             param: bottle
             ptype: Bottle class
-            param: origin
+            param: origins
             ptype: string or array
         """
         bottle = Bottle()
@@ -29,8 +29,8 @@ class CorsPluginObject():
         return _enable_cors
 
     def _options_route(self):
-        """ Function dedicated to add option route to the hole
-            app with the route opject
+        """
+        Adds the OPTIONS route to all endpoints.
         """
         route('/', method='OPTIONS', callback=self.options_function)
         route(
@@ -41,11 +41,6 @@ class CorsPluginObject():
         pass
 
     def cors_headers(self):
-        """ Function dedicated to assing headers
-
-            params: origins
-            ptype: string or array of strings
-        """
         response.headers['Access-Control-Allow-Origin'] = self._get_origin()
         response.headers['Access-Control-Allow-Methods'] = '\
             GET, POST, PUT, PATCH, OPTIONS, DELETE'
@@ -53,9 +48,9 @@ class CorsPluginObject():
             Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token, Authorization'
 
     def _get_origin(self):
-        '''
-        Function dedicated to return origin if is on list
-        '''
+        """
+        Returns the origin if found on the allowed origins list.
+        """
         client_origin = request.headers.get('Origin', None)
         if '*' in self.origins: return '*'
         if not client_origin:
@@ -66,7 +61,9 @@ class CorsPluginObject():
         return self.origins[0]
 
     def abort(self, code=500, text='Unknown Error.'):
-        """ Aborts execution and causes a HTTP error. """
+        """
+        Aborts execution and causes a HTTP error. 
+        """
         self.cors_headers()
         headers = response.headers.dict
         headerlist = response.headerlist
@@ -85,3 +82,4 @@ def cors_plugin(origins="*"):
 
 abort = cors_plugin_object.abort
 cors_headers = cors_plugin_object.cors_headers
+

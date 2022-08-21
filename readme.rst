@@ -1,7 +1,7 @@
 bottle-cors-plugin
 ==================
 
-The easiest way to implement cors on your bottle py web application
+The easiest way to implement CORS on your bottle py web application.
 
 Installing the plugin
 ---------------------
@@ -10,8 +10,7 @@ Installing the plugin
 
     pip install bottle-cors-plugin
 
-after this on your bottle app you need to import cors_plugin and install
-for example.
+Then, on your bottle app import the `cors_plugin` and install it like so:
 
 .. code-block:: python
 
@@ -31,33 +30,31 @@ for example.
     if name == "__main__":
       run(host='localhost', port=7000)
 
-On the cors_plugin function you can send a simple string or array of origins
-this variable will set globaly on the plugin so you just set-it one time to add *
-origins just don't put anything on the function
+The `cors_plugin` function accepts a string or an array of strings representing the allowed origins.
+Passing no origins to the function will assume `'*'`, that is, all origins are allowed.
 
 .. code-block:: python
 
   cors_plugin()
 
-This will return the * origins
+This will allow all origins (`'*'`).
 
 .. code-block:: python
 
     cors_plugin('https://google.com')
 
-with just google.com as and origin or
+Allows just "https://google.com" as origin.
 
 .. code-block:: python
 
     cors_plugin(['https://google.com', 'http://google.com'])
 
-for multiple origins
+Is how you define multiple allowed origins.
 
 Aborts
 ------
 
-for normal abort errors you need to import the abort of the cors_plugin like
-this
+For regular abort errors you need to import the `abort` function from `cors_plugin` like so:
 
 .. code-block:: python
 
@@ -68,10 +65,9 @@ this
     def landing():
       response.content_type = 'application/json'
       abort(500, 'Hola')
-      return {'status': 'Works'}
+      return {'status': 'Internal error'}
 
-It works with all errors, and for custom error handler just import the cors_headers
-to apply on the function example like this
+It works with all errors, and if you need a custom error handler, use the `cors_headers` function like so:
 
 .. code-block:: python
 
@@ -88,3 +84,4 @@ to apply on the function example like this
         cors_headers()
         error_log.content_type = 'application/json'
         return error_log.body
+
